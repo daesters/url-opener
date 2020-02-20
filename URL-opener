@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Open URL
+if [ -z "" ]; then
+	echo "No file given"
+	exit
+fi
+FILE=$1
+echo "File is $FILE"
+URL=`cat $1`
+echo "Opening URL $URL"
+xdg-open $URL
