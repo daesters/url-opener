@@ -21,10 +21,15 @@ function check_local_path() {
 
 }
 
-function create_link() {
-	ln -s $SCRIPTPATH/$SCRIPT $1/$CMD
+function copy_script() {
+	cp $SCRIPTPATH/$SCRIPT $1/$CMD
 }
 
+function copy_desktop() {	
+	echo "Copying desktop files..."
+	cp web.jpg "$HOME/.local/share/icons/hicolor/128x128/apps/URL-opener.jpg"
+	cp "URL-opener.desktop" "$HOME/.local/share/applications/"
+}
 
 ### Main
 
@@ -33,12 +38,17 @@ res=$?
 if [ $res -gt 0 ]
 then
 	echo "Install in local path"
-	create_link $LOCALPATH	
+	copy_script $LOCALPATH	
 else
 	read -p "Install in global path, needs sudo rights (y/n)?" choice
 	case "$choice" in 
-	  y|Y ) sudo create_link $PATH;;
+	  y|Y ) sudo copy_script $PATH;;
 	  * ) echo "abort" && exit;;
 	esac
 fi
-#sudo ln -s $SCRIPTPATH/$SCRIPT $LINK
+
+copy_desktop
+
+echo "Done"
+
+

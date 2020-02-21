@@ -2,4 +2,5 @@
 Type=Application
 Terminal=false
 Exec=url-opener %f
+Icon=/home/simon/programs/url-opener/web.jpg
 Name=URL-opener 
